@@ -1,0 +1,45 @@
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import "./InfoBox.css"
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
+import LightModeIcon from '@mui/icons-material/LightMode';
+
+export default function InfoBox({info}){
+    const INIT_URL = "https://images.unsplash.com/photo-1703018894827-96c5e0049541?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+    const HOT_URL="https://images.unsplash.com/photo-1584961630907-3fdb471c2848?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    const COLD_URL="https://images.unsplash.com/photo-1477468572316-36979010099d?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    const RAIN_URL="https://plus.unsplash.com/premium_photo-1700131051396-307a36e3ef85?q=80&w=969&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; 
+    
+    return(
+        <div className="infobox">
+            <div className='cardContainer'>
+            <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        image={info.humidity>80?RAIN_URL:info.temp>15?HOT_URL:COLD_URL}
+        title="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {info.city} {info.humidity>80?<ThunderstormIcon />:info.temp>15?<LightModeIcon />:<AcUnitIcon />}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" component={"span"}>
+          <div>Temperature= {info.temp}&deg;</div>
+          <div>Humidity= {info.humidity}</div>
+          <div>Minimum Temperature= {info.temp_min}</div>
+          <div>Maximum Temperature= {info.temp_max}</div>
+          <div>The weather feels like {info.feelsLike}&deg;</div>
+
+
+        </Typography>
+      </CardContent>
+    </Card>
+    </div>
+
+        </div>
+    )
+}
